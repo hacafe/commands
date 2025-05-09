@@ -1,0 +1,24 @@
+###Enable NTP
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\w32time\TimeProviders\NtpServer" -Name "Enabled" -Value 1
+
+###Announce service
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Config" -Name "AnnounceFlags" -Value 5
+
+###Check NTP servers
+w32tm /query /peers
+w32tm /query /source
+
+###Check configuration
+w32tm /query /configuration
+
+###Force NTP sincronization
+w32tm /resync /nowait
+
+###Check status NTP
+w32tm /query /status
+
+###Configure NTP servers
+w32tm /config /syncfromflags:manual /manualpeerlist:"server1.local,server2.local"
+
+###Restart service
+Restart-Service w32Time
