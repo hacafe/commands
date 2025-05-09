@@ -1,1 +1,27 @@
+###Status Health Replication:
+repadmin /replsummary
 
+###Quequed replication:
+repadmin /Queue
+
+###Check status replication:
+repadmin /showrepl
+
+###Summary replication
+repadmin /replsum
+
+###Check trust relation
+Test-ComputerSecureChannel -verbose
+
+###Repair trust relation
+Reset-ComputerMachinePassword -Server serverXYZ -Credential userXYZ
+
+###Check roles
+netdom query fsmo
+
+###Transfer roles
+Move-ADDirectoryServerOperationMasterRole -Identity "serverXYZ" PDCEmulator
+Move-ADDirectoryServerOperationMasterRole -Identity "serverXYZ" Infrastructuremaster
+Move-ADDirectoryServerOperationMasterRole -Identity "serverXYZ" DomainNamingmaster
+Move-ADDirectoryServerOperationMasterRole -Identity "serverXYZ" RIDMaster
+Move-ADDirectoryServerOperationMasterRole -Identity "serverXYZ" SchemaMaster
