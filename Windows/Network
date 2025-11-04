@@ -1,0 +1,5 @@
+//Get Network adapter name
+Get-NetAdapter | Format-Table Name, Status
+
+//Restart Network adapter
+Disable-NetAdapter -Name "Ethernet 3" -Confirm:$false ; Enable-NetAdapter -Name "Ethernet 3" -Confirm:$false
