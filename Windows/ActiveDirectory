@@ -14,7 +14,7 @@ repadmin /replsum
 Test-ComputerSecureChannel -verbose
 
 ###Repair trust relation
-Reset-ComputerMachinePassword -Server serverXYZ -Credential userXYZ
+Reset-ComputerMachinePassword -Server "serverXYZ" -Credential domain\userXYZ
 
 ###Check roles
 netdom query fsmo
